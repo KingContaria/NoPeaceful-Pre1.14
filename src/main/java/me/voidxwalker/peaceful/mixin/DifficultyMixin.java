@@ -10,12 +10,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Difficulty.class)
 public class DifficultyMixin  {
-    @Shadow @Final private static Difficulty[] BY_NAME;
+    @Shadow @Final private static Difficulty[] DIFFICULTIES;
 
     @Inject(method = "byOrdinal", at = @At("RETURN"),cancellable = true)
     private static void noPeaceful(int ordinal, CallbackInfoReturnable<Difficulty> cir){
         if(cir.getReturnValue().equals(Difficulty.PEACEFUL)){
-             cir.setReturnValue(BY_NAME[1]);
+             cir.setReturnValue(DIFFICULTIES[1]);
         }
     }
 }
